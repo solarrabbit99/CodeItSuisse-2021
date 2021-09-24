@@ -16,16 +16,20 @@
 
 package com.example;
 
+import com.solarrabbit.creditsuisse.model.Person;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -72,6 +76,21 @@ public class Main {
       model.put("message", e.getMessage());
       return "error";
     }
+  }
+
+  /**
+   * Example method for the challenge.
+   *
+   * @param person object created from json by the spring boot
+   * @return string representation of the json output
+   */
+  @RequestMapping(value = "/person", method = RequestMethod.POST, produces = "application/json")
+  @ResponseBody
+  public String person(@RequestBody Person person) {
+    person.ageByOne();
+    JSONObject object = new JSONObject();
+    person.loadJSON(object);
+    return object.toString();
   }
 
   @Bean
