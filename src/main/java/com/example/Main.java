@@ -92,6 +92,7 @@ public class Main {
   @RequestMapping(value = "/tic-tac-toe", method = RequestMethod.POST, produces = "application/json")
   @ResponseBody
   public String ticTacToe(@RequestBody TicTacToe ticTacToe) {
+    // ticTacToe.getRequest();
     return ticTacToe.toString();
   }
 
