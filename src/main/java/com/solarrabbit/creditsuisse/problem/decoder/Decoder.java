@@ -3,6 +3,7 @@ package com.solarrabbit.creditsuisse.problem.decoder;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.json.JSONArray;
@@ -31,7 +32,7 @@ public class Decoder {
         if (list == null || LocalDateTime.now().getMinute() % 10 == 0) {
             generateNewList();
         }
-        return list.get(LocalDateTime.now().getMinute() % 10);
+        return list.get(new Random().nextInt(list.size()));
     }
 
     private void generateNewList() {
@@ -40,8 +41,7 @@ public class Decoder {
             lst.add(str);
             return lst;
         }).collect(Collectors.toList());
-        list = getStream(newList, num_slots - 1).stream().filter(lst -> isConsistent(lst)).limit(10)
-                .collect(Collectors.toList());
+        list = getStream(newList, num_slots - 1).stream().filter(lst -> isConsistent(lst)).collect(Collectors.toList());
     }
 
     private List<List<String>> getStream(List<List<String>> list, int calls) {
