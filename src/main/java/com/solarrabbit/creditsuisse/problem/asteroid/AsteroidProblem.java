@@ -43,10 +43,12 @@ public class AsteroidProblem implements Solvable {
         String leftWave = builder.reverse().toString();
         String rightWave = original.substring(index + 1);
 
-        this.occurrenceMap.put(this.currentChar, 1);
-        runRecursively(leftWave, rightWave);
-        return this.occurrenceMap.values().stream().map(count -> count * getMultiplier(count)).reduce((x, y) -> x + y)
-                .orElse(0.0);
+        return calculateRecursively(leftWave, rightWave, 0);
+        // this.occurrenceMap.put(this.currentChar, 1);
+        // runRecursively(leftWave, rightWave);
+        // return this.occurrenceMap.values().stream().map(count -> count *
+        // getMultiplier(count)).reduce((x, y) -> x + y)
+        // .orElse(0.0);
     }
 
     private double calculateRecursively(String leftWave, String rightWave, double accumulativeScore) {

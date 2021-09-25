@@ -11,7 +11,7 @@ public class TicTacToe {
 
     public void getRequest() {
         WebClient client = WebClient.create("https://cis2021-arena.herokuapp.com/tic-tac-toe/start");
-        // Flux<ServerSentEvent<String>> eventStream =
+        // Flux<ServerSentEvent<Object>> eventStream =
         // client.get().uri(battleId).retrieve().bodyToFlux(ArenaEvent.class);
     }
 
