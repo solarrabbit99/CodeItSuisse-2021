@@ -32,20 +32,56 @@ public class StockHunterProblem implements Solvable {
         JSONArray array = new JSONArray(calculateRiskCosts());
         JSONObject object = new JSONObject();
         object.put("gridMap", array);
+        object.put("minimumCost", minCost());
         return object;
     }
 
     private int minCost() {
         int length = 2 * Math.max(targetPoint.getX() + 1, targetPoint.getY() + 1);
-        char[][] riskCosts = calculateRiskCosts(length, length);
+        int[][] riskCosts = calculateRiskIntCosts(length, length);
+
+        int[][] weights = initInf(length, length);
+        weights[0][0] = 0;
+        boolean[][] visited = new boolean[length][length];
+        visited[0][0] = true;
         TreeSet<RankedGrid> riskLevels = new TreeSet<>();
         riskLevels.add(new RankedGrid(new Grid(0, 0), 0));
+        final int[][] directions = new int[][] { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
 
         while (!riskLevels.isEmpty()) {
+            RankedGrid grid = riskLevels.pollFirst();
+            if (grid.equals(targetPoint))
+                return grid.level;
 
+            for (int[] dir : directions) {
+                int newR = grid.first + dir[0];
+                int newC = grid.second + dir[1];
+                Grid newGrid = new Grid(newR, newC);
+                if (!isWall(newGrid, length, length) && !visited[newR][newC]
+                        && weights[newR][newC] > weights[grid.first][grid.second] + riskCosts[newR][newC]) {
+                    weights[newR][newC] = weights[grid.first][grid.second] + riskCosts[newR][newC];
+                    riskLevels.add(new RankedGrid(newGrid, weights[newR][newC]));
+                }
+            }
+
+            visited[grid.first][grid.second] = true;
         }
 
         return 0;
+    }
+
+    private boolean isWall(Grid grid, int row, int col) {
+        return grid.first < 0 || grid.second < 0 || grid.first >= row || grid.second >= col;
+    }
+
+    private int[][] initInf(int row, int col) {
+        int[][] result = new int[row][col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                result[i][j] = Integer.MAX_VALUE;
+            }
+        }
+        return result;
     }
 
     private int[][] calculateRiskLevels(int row, int col) {
@@ -55,10 +91,10 @@ public class StockHunterProblem implements Solvable {
                 int riskIndex = 0;
                 if (i == 0 && j == 0) {
                     riskIndex = 0;
-                } else if (j == 0) {
-                    riskIndex = i * horizontalStepper;
                 } else if (i == 0) {
-                    riskIndex = j * verticalStepper;
+                    riskIndex = j * horizontalStepper;
+                } else if (j == 0) {
+                    riskIndex = i * verticalStepper;
                 } else {
                     riskIndex = riskLevels[i - 1][j] * riskLevels[i][j - 1];
                 }
@@ -68,7 +104,30 @@ public class StockHunterProblem implements Solvable {
         return riskLevels;
     }
 
-    private char[][] calculateRiskCosts() {
+    private int[][] calculateRiskIntCosts(int row, int col) {
+        char[][] costs = calculateRiskCosts(row, col);
+        int[][] result = new int[row][col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                switch (costs[i][j]) {
+                    case 'L':
+                        result[i][j] = 3;
+                        break;
+                    case 'M':
+                        result[i][j] = 2;
+                        break;
+                    case 'S':
+                        result[i][j] = 1;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        return result;
+    }
+
+    public char[][] calculateRiskCosts() {
         return calculateRiskCosts(targetPoint.getX() + 1, targetPoint.getY() + 1);
     }
 
@@ -117,11 +176,11 @@ public class StockHunterProblem implements Solvable {
         }
     }
 
-    private static class Grid {
+    public static class Grid {
         protected final int first;
         protected final int second;
 
-        private Grid(int first, int second) {
+        public Grid(int first, int second) {
             this.first = first;
             this.second = second;
         }
@@ -132,6 +191,14 @@ public class StockHunterProblem implements Solvable {
 
         private int getY() {
             return this.second;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (!(obj instanceof Grid))
+                return false;
+            Grid grid = (Grid) obj;
+            return this.first == grid.first && this.second == grid.second;
         }
     }
 
