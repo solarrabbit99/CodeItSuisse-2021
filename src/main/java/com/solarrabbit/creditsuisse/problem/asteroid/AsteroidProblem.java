@@ -1,7 +1,5 @@
 package com.solarrabbit.creditsuisse.problem.asteroid;
 
-import java.util.HashMap;
-
 import com.solarrabbit.creditsuisse.Solvable;
 import org.json.JSONObject;
 
@@ -10,7 +8,6 @@ public class AsteroidProblem implements Solvable {
     private double highestScore;
     private int latestCenter;
     private char currentChar;
-    private HashMap<Character, Integer> occurrenceMap;
 
     public AsteroidProblem(String original) {
         this.original = original;
@@ -37,18 +34,12 @@ public class AsteroidProblem implements Solvable {
 
     private double calculateScore(int index) {
         this.currentChar = original.charAt(index);
-        this.occurrenceMap = new HashMap<>();
 
         StringBuilder builder = new StringBuilder(original.substring(0, index));
         String leftWave = builder.reverse().toString();
         String rightWave = original.substring(index + 1);
 
         return calculateRecursively(leftWave, rightWave, 0);
-        // this.occurrenceMap.put(this.currentChar, 1);
-        // runRecursively(leftWave, rightWave);
-        // return this.occurrenceMap.values().stream().map(count -> count *
-        // getMultiplier(count)).reduce((x, y) -> x + y)
-        // .orElse(0.0);
     }
 
     private double calculateRecursively(String leftWave, String rightWave, double accumulativeScore) {
@@ -71,24 +62,6 @@ public class AsteroidProblem implements Solvable {
         }
         return calculateRecursively(trimmedLeft, trimmedRight, accumulativeScore + count * getMultiplier(count))
                 + (accumulativeScore == 0 ? 1 : 0);
-    }
-
-    private void runRecursively(String leftWave, String rightWave) {
-        if (leftWave.isEmpty() || rightWave.isEmpty())
-            return;
-
-        char c = leftWave.charAt(0);
-        if (!rightWave.startsWith(String.valueOf(c)))
-            return;
-
-        int countLeft = countPrefixes(c, leftWave);
-        int countRight = countPrefixes(c, rightWave);
-        int count = countLeft + countRight;
-        String trimmedLeft = leftWave.substring(countLeft);
-        String trimmedRight = rightWave.substring(countRight);
-
-        this.occurrenceMap.merge(c, count, (existingCount, newCount) -> existingCount + newCount);
-        runRecursively(trimmedLeft, trimmedRight);
     }
 
     private int countPrefixes(char c, String str) {

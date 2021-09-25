@@ -18,7 +18,9 @@ package com.example;
 
 import com.solarrabbit.creditsuisse.problem.arena.tictactoe.TicTacToe;
 import com.solarrabbit.creditsuisse.problem.asteroid.AsteroidWrapper;
+import com.solarrabbit.creditsuisse.problem.decoder.Decoder;
 import com.solarrabbit.creditsuisse.problem.parasite.ParasiteProblem;
+import com.solarrabbit.creditsuisse.problem.stonks.StonksProblem;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.json.JSONArray;
@@ -95,11 +97,32 @@ public class Main {
     return problems.solve().toString();
   }
 
+  @RequestMapping(value = "/stonks", method = RequestMethod.POST, produces = "application/json")
+  @ResponseBody
+  public String stonks(@RequestBody List<StonksProblem> problems) {
+    JSONArray answer = new JSONArray();
+    problems.forEach(prob -> answer.put(prob.solve()));
+    return answer.toString();
+  }
+
   @RequestMapping(value = "/tic-tac-toe", method = RequestMethod.POST, produces = "application/json")
   @ResponseBody
   public String ticTacToe(@RequestBody TicTacToe ticTacToe) {
-    ticTacToe.getRequest();
+    ticTacToe.getIdentity();
+    ticTacToe.play();
     return ticTacToe.toString();
+  }
+
+  @RequestMapping(value = "/decoder", method = RequestMethod.POST, produces = "application/json")
+  @ResponseBody
+  public String decoder(@RequestBody Decoder decoder) {
+    return null;
+  }
+
+  @RequestMapping(value = "/fixedrace", method = RequestMethod.POST)
+  @ResponseBody
+  public String fixedRace(@RequestBody String fixedRace) {
+    return "foobar";
   }
 
   @Bean
