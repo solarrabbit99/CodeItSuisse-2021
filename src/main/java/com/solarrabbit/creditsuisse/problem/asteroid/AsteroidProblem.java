@@ -57,9 +57,9 @@ public class AsteroidProblem implements Solvable {
 
         if (c == this.currentChar && accumulativeScore == 0) {
             count++;
-            return calculateRecursively(trimmedLeft, trimmedRight, accumulativeScore += count * getMultiplier(count));
+            return calculateRecursively(trimmedLeft, trimmedRight, accumulativeScore + count * getMultiplier(count));
         }
-        return calculateRecursively(trimmedLeft, trimmedRight, accumulativeScore += count * getMultiplier(count))
+        return calculateRecursively(trimmedLeft, trimmedRight, accumulativeScore + count * getMultiplier(count))
                 + (accumulativeScore == 0 ? 1 : 0);
     }
 
