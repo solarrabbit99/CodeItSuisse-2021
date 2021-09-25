@@ -1,7 +1,6 @@
 package com.solarrabbit.creditsuisse.problem.arena.tictactoe;
 
 import org.springframework.web.reactive.function.client.WebClient;
-
 import reactor.core.publisher.Mono;
 
 public class TicTacToe {
@@ -21,7 +20,8 @@ public class TicTacToe {
     }
 
     public void play() {
-
+        InitialResponse response = new InitialRequest(battleId).getResponse();
+        System.out.println(response.getPlayer());
     }
 
     @Override

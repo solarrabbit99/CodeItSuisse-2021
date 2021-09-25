@@ -21,12 +21,11 @@ import com.solarrabbit.creditsuisse.problem.asteroid.AsteroidWrapper;
 import com.solarrabbit.creditsuisse.problem.decoder.Decoder;
 import com.solarrabbit.creditsuisse.problem.fixedrace.FixedRace;
 import com.solarrabbit.creditsuisse.problem.parasite.ParasiteProblem;
+import com.solarrabbit.creditsuisse.problem.stockhunter.StockHunterProblem;
 import com.solarrabbit.creditsuisse.problem.stonks.StonksProblem;
-import com.solarrabbit.creditsuisse.stockhunter.StockHunterProblem;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -119,7 +118,7 @@ public class Main {
     @RequestMapping(value = "/tic-tac-toe", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public String ticTacToe(@RequestBody TicTacToe ticTacToe) {
-        ticTacToe.getIdentity();
+        // ticTacToe.getIdentity();
         ticTacToe.play();
         return ticTacToe.toString();
     }

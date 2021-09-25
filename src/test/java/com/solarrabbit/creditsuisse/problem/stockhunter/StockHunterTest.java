@@ -1,7 +1,6 @@
 package com.solarrabbit.creditsuisse.problem.stockhunter;
 
-import com.solarrabbit.creditsuisse.stockhunter.StockHunterProblem;
-import com.solarrabbit.creditsuisse.stockhunter.StockHunterProblem.Grid;
+import com.solarrabbit.creditsuisse.problem.stockhunter.StockHunterProblem.Grid;
 
 import org.junit.Test;
 

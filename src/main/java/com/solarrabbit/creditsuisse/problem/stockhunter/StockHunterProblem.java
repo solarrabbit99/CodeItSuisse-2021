@@ -1,4 +1,4 @@
-package com.solarrabbit.creditsuisse.stockhunter;
+package com.solarrabbit.creditsuisse.problem.stockhunter;
 
 import java.util.TreeSet;
 import com.solarrabbit.creditsuisse.Solvable;
