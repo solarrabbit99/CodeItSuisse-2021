@@ -17,11 +17,10 @@
 package com.example;
 
 import com.solarrabbit.creditsuisse.problem.arena.tictactoe.TicTacToe;
-import com.solarrabbit.creditsuisse.problem.asteroid.AsteroidProblem;
+import com.solarrabbit.creditsuisse.problem.asteroid.AsteroidWrapper;
 import com.solarrabbit.creditsuisse.problem.parasite.ParasiteProblem;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -92,10 +91,8 @@ public class Main {
 
   @RequestMapping(value = "/asteroid", method = RequestMethod.POST, produces = "application/json")
   @ResponseBody
-  public String asteroid(@RequestBody List<AsteroidProblem> problems) {
-    JSONArray answer = new JSONArray();
-    problems.forEach(prob -> answer.put(prob.solve()));
-    return answer.toString();
+  public String asteroid(@RequestBody AsteroidWrapper problems) {
+    return problems.solve().toString();
   }
 
   @RequestMapping(value = "/tic-tac-toe", method = RequestMethod.POST, produces = "application/json")
