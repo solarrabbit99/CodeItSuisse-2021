@@ -123,7 +123,7 @@ public class Main {
   @ResponseBody
   public String fixedRace(@RequestBody String fixedRace) {
     System.out.println(fixedRace);
-    return "Fabian Fogel, Stepanie Strang, foo, foo, foo, foo, foo, foo, foo, foo";
+    return "Zada Zynda, Fabian Fogel, Stepanie Strang, Alysia Auslander, Nelson Noss, foo, foo, foo, foo, foo";
   }
 
   @Bean
