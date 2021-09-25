@@ -2,6 +2,9 @@ package com.solarrabbit.creditsuisse.stockhunter;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
 import com.solarrabbit.creditsuisse.Solvable;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -33,14 +36,22 @@ public class StockHunterProblem implements Solvable {
     }
 
     private int minCost() {
-        Map<Grid, Integer> riskLevels = new HashMap<>();
+        int length = 2 * Math.max(targetPoint.getX() + 1, targetPoint.getY() + 1);
+        char[][] riskCosts = calculateRiskCosts(length, length);
+        TreeSet<RankedGrid> riskLevels = new TreeSet<>();
+        riskLevels.add(new RankedGrid(new Grid(0, 0), 0));
+
+        while (!riskLevels.isEmpty()) {
+
+        }
+
         return 0;
     }
 
-    private int[][] calculateRiskLevels() {
-        int[][] riskLevels = new int[targetPoint.getX() + 1][targetPoint.getY() + 1];
-        for (int i = 0; i <= targetPoint.getX(); i++) {
-            for (int j = 0; j <= targetPoint.getY(); j++) {
+    private int[][] calculateRiskLevels(int row, int col) {
+        int[][] riskLevels = new int[row][col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 int riskIndex = 0;
                 if (i == 0 && j == 0) {
                     riskIndex = 0;
@@ -58,10 +69,14 @@ public class StockHunterProblem implements Solvable {
     }
 
     private char[][] calculateRiskCosts() {
-        int[][] riskLevels = calculateRiskLevels();
-        char[][] riskCosts = new char[targetPoint.getX() + 1][targetPoint.getY() + 1];
-        for (int i = 0; i <= targetPoint.getX(); i++) {
-            for (int j = 0; j <= targetPoint.getY(); j++) {
+        return calculateRiskCosts(targetPoint.getX() + 1, targetPoint.getY() + 1);
+    }
+
+    private char[][] calculateRiskCosts(int row, int col) {
+        int[][] riskLevels = calculateRiskLevels(row, col);
+        char[][] riskCosts = new char[row][col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 int remainder = riskLevels[i][j] % 3;
                 switch (remainder) {
                     case 0:
@@ -81,13 +96,30 @@ public class StockHunterProblem implements Solvable {
         return riskCosts;
     }
 
-    // private static class RankedGrid extends Grid {
+    private static class RankedGrid extends Grid implements Comparable<RankedGrid> {
+        private int level;
 
-    // }
+        private RankedGrid(Grid grid, int level) {
+            super(grid.getX(), grid.getY());
+            this.level = level;
+        }
+
+        @Override
+        public int compareTo(RankedGrid o) {
+            if (this.level == o.level) {
+                if (this.first != o.first) {
+                    return this.first - o.first;
+                } else {
+                    return this.second - o.second;
+                }
+            }
+            return this.level - o.level;
+        }
+    }
 
     private static class Grid {
-        private final int first;
-        private final int second;
+        protected final int first;
+        protected final int second;
 
         private Grid(int first, int second) {
             this.first = first;
