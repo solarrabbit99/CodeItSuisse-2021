@@ -19,8 +19,10 @@ package com.example;
 import com.solarrabbit.creditsuisse.problem.arena.tictactoe.TicTacToe;
 import com.solarrabbit.creditsuisse.problem.asteroid.AsteroidWrapper;
 import com.solarrabbit.creditsuisse.problem.decoder.Decoder;
+import com.solarrabbit.creditsuisse.problem.fixedrace.FixedRace;
 import com.solarrabbit.creditsuisse.problem.parasite.ParasiteProblem;
 import com.solarrabbit.creditsuisse.problem.stonks.StonksProblem;
+import com.solarrabbit.creditsuisse.stockhunter.StockHunterProblem;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.json.JSONArray;
@@ -105,6 +107,14 @@ public class Main {
     return answer.toString();
   }
 
+  @RequestMapping(value = "/stock-hunter", method = RequestMethod.POST, produces = "application/json")
+  @ResponseBody
+  public String stockHunter(@RequestBody List<StockHunterProblem> problems) {
+    JSONArray answer = new JSONArray();
+    problems.forEach(prob -> answer.put(prob.solve()));
+    return answer.toString();
+  }
+
   @RequestMapping(value = "/tic-tac-toe", method = RequestMethod.POST, produces = "application/json")
   @ResponseBody
   public String ticTacToe(@RequestBody TicTacToe ticTacToe) {
@@ -123,7 +133,9 @@ public class Main {
   @ResponseBody
   public String fixedRace(@RequestBody String fixedRace) {
     System.out.println(fixedRace);
-    return "Zada Zynda, Fabian Fogel, Stepanie Strang, Alysia Auslander, Justin Jack, Nelson Noss, Caitlin Cully, Bernie Bondy, Olympia Oliphant, Trudy Toone";
+    String res = FixedRace.solve(fixedRace);
+    System.out.println(res);
+    return res;
   }
 
   @Bean
