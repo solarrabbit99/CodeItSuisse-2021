@@ -1,16 +1,12 @@
 package com.solarrabbit.creditsuisse.stockhunter;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.TreeSet;
-
 import com.solarrabbit.creditsuisse.Solvable;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class StockHunterProblem implements Solvable {
-    private final Grid entryPoint;
+    protected final Grid entryPoint;
     private final Grid targetPoint;
     private final int gridDepth;
     private final int gridKey;
