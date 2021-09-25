@@ -29,7 +29,7 @@ public class ParasiteB {
     public int getTotalTick() {
         this.runSimulation();
         for (int i = 0; i < room.getNumOfRows(); i++) {
-            for (int j = 0; j < room.getNumOfRows(); j++) {
+            for (int j = 0; j < room.getNumOfColumns(); j++) {
                 if (room.getStatus(i, j) == Status.HEALTHY) {
                     return -1;
                 }
