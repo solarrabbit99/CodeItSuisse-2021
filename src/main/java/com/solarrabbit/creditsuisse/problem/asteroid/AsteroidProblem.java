@@ -43,11 +43,11 @@ public class AsteroidProblem implements Solvable {
 
     private double calculateRecursively(String leftWave, String rightWave, double accumulativeScore) {
         if (leftWave.isEmpty() || rightWave.isEmpty())
-            return accumulativeScore;
+            return accumulativeScore == 0 ? 1 : accumulativeScore;
 
         char c = leftWave.charAt(0);
         if (!rightWave.startsWith(String.valueOf(c)))
-            return accumulativeScore;
+            return accumulativeScore == 0 ? 1 : accumulativeScore;
 
         int countLeft = countPrefixes(c, leftWave);
         int countRight = countPrefixes(c, rightWave);

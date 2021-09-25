@@ -69,4 +69,16 @@ public class AsteroidTest {
         }
     }
 
+    @Test
+    public void test6() {
+        AsteroidProblem problem = new AsteroidProblem("AA");
+        JSONObject answer = problem.solve();
+        try {
+            assertEquals(1, answer.getInt("score"));
+            assertEquals(0, answer.getInt("origin"));
+        } catch (JSONException exception) {
+            fail();
+        }
+    }
+
 }
