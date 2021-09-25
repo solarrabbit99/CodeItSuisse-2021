@@ -16,10 +16,12 @@
 
 package com.example;
 
-import com.solarrabbit.creditsuisse.model.Person;
+import com.solarrabbit.creditsuisse.problem.arena.tictactoe.TicTacToe;
+import com.solarrabbit.creditsuisse.problem.parasite.ParasiteProblem;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.json.JSONObject;
+
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -36,6 +38,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -78,19 +81,18 @@ public class Main {
     }
   }
 
-  /**
-   * Example method for the challenge.
-   *
-   * @param person object created from json by the spring boot
-   * @return string representation of the json output
-   */
-  @RequestMapping(value = "/person", method = RequestMethod.POST, produces = "application/json")
+  @RequestMapping(value = "/parasite", method = RequestMethod.POST, produces = "application/json")
   @ResponseBody
-  public String person(@RequestBody Person person) {
-    person.ageByOne();
-    JSONObject object = new JSONObject();
-    person.loadJSON(object);
-    return object.toString();
+  public String parasite(@RequestBody List<ParasiteProblem> problems) {
+    JSONArray answer = new JSONArray();
+    problems.forEach(prob -> answer.put(prob.solve()));
+    return answer.toString();
+  }
+
+  @RequestMapping(value = "/tic-tac-toe", method = RequestMethod.POST, produces = "application/json")
+  @ResponseBody
+  public String ticTacToe(@RequestBody TicTacToe ticTacToe) {
+    return ticTacToe.toString();
   }
 
   @Bean
