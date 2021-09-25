@@ -2,13 +2,15 @@ package com.solarrabbit.creditsuisse.problem.parasite;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.solarrabbit.creditsuisse.Solvable;
 import org.json.JSONObject;
 
-public class ParasiteProblem {
+public class ParasiteProblem implements Solvable {
     private int room;
     private List<List<Integer>> grid;
     private ArrayList<String> interestedIndividuals;
 
+    @Override
     public JSONObject solve() {
         Room room = new Room(grid);
         ParasiteA a = new ParasiteA((Room) room.clone());

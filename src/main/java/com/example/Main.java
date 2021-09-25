@@ -17,6 +17,7 @@
 package com.example;
 
 import com.solarrabbit.creditsuisse.problem.arena.tictactoe.TicTacToe;
+import com.solarrabbit.creditsuisse.problem.asteroid.AsteroidProblem;
 import com.solarrabbit.creditsuisse.problem.parasite.ParasiteProblem;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -84,6 +85,14 @@ public class Main {
   @RequestMapping(value = "/parasite", method = RequestMethod.POST, produces = "application/json")
   @ResponseBody
   public String parasite(@RequestBody List<ParasiteProblem> problems) {
+    JSONArray answer = new JSONArray();
+    problems.forEach(prob -> answer.put(prob.solve()));
+    return answer.toString();
+  }
+
+  @RequestMapping(value = "/asteroid", method = RequestMethod.POST, produces = "application/json")
+  @ResponseBody
+  public String asteroid(@RequestBody List<AsteroidProblem> problems) {
     JSONArray answer = new JSONArray();
     problems.forEach(prob -> answer.put(prob.solve()));
     return answer.toString();
