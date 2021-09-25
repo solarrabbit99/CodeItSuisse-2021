@@ -22,7 +22,7 @@ public class ParasiteA {
 
     public int solve(int row, int column) {
         this.runSimulation();
-        return infectedTick[row][column] == null ? -1 : infectedTick[row][column];
+        return infectedTick[row][column] == null || infectedTick[row][column] == 0 ? -1 : infectedTick[row][column];
     }
 
     public int getTotalTick() {

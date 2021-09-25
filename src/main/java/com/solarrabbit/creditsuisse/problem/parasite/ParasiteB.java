@@ -21,11 +21,6 @@ public class ParasiteB {
         this.isFinished = false;
     }
 
-    public int solve(int row, int column) {
-        this.runSimulation();
-        return infectedTick[row][column] == null ? -1 : infectedTick[row][column];
-    }
-
     public int getTotalTick() {
         this.runSimulation();
         for (int i = 0; i < room.getNumOfRows(); i++) {
