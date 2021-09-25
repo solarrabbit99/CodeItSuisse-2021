@@ -1,6 +1,8 @@
 package com.solarrabbit.creditsuisse.problem.arena.tictactoe;
 
+import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.web.reactive.function.client.WebClient;
+
 import reactor.core.publisher.Flux;
 
 public class TicTacToe {
@@ -8,12 +10,10 @@ public class TicTacToe {
     private String battleId;
 
     public void getRequest() {
-        WebClient client = WebClient.create(arenaEndpoint);
-
-        // Flux<ServerSentEvent<String>> eventStream = client.get().uri("/start/" +
-        // battleId).retrieve()
-        // .bodyToFlux(Object);
-        // eventStream.subscribe(content -> System.out.println(content.toString));
+        // WebClient client =
+        // WebClient.create("https://cis2021-arena.herokuapp.com/tic-tac-toe/start");
+        // Flux<ServerSentEvent<String>> eventStream =
+        // client.get().uri(battleId).retrieve().bodyToFlux(elementClass);
     }
 
     public void setBattleId(String battleId) {
