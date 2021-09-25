@@ -102,7 +102,7 @@ public class AsteroidProblem implements Solvable {
     private double getMultiplier(int occurences) {
         if (occurences >= 10)
             return 2;
-        if (occurences > 7)
+        if (occurences >= 7)
             return 1.5;
         return 1;
     }

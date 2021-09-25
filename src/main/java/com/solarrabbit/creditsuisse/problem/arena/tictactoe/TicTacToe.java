@@ -10,10 +10,9 @@ public class TicTacToe {
     private String battleId;
 
     public void getRequest() {
-        // WebClient client =
-        // WebClient.create("https://cis2021-arena.herokuapp.com/tic-tac-toe/start");
+        WebClient client = WebClient.create("https://cis2021-arena.herokuapp.com/tic-tac-toe/start");
         // Flux<ServerSentEvent<String>> eventStream =
-        // client.get().uri(battleId).retrieve().bodyToFlux(elementClass);
+        // client.get().uri(battleId).retrieve().bodyToFlux(ArenaEvent.class);
     }
 
     public void setBattleId(String battleId) {
