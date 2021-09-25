@@ -123,7 +123,7 @@ public class Main {
   @ResponseBody
   public String fixedRace(@RequestBody String fixedRace) {
     System.out.println(fixedRace);
-    return "foo, foo, foo, foo, foo, foo, foo, foo, foo, foo";
+    return "Fabian Fogel, foo, foo, foo, foo, foo, foo, foo, foo, foo";
   }
 
   @Bean
