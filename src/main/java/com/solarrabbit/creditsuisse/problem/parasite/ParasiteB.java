@@ -12,7 +12,6 @@ public class ParasiteB {
             { 1, -1 }, { 1, 1 }, { -1, 1 } };
     private final Room room;
     private final Integer[][] infectedTick;
-    private int totalTicks;
     private boolean isFinished;
 
     public ParasiteB(Room room) {
@@ -28,15 +27,20 @@ public class ParasiteB {
 
     public int getTotalTick() {
         this.runSimulation();
+        int maxTicks = 0;
         for (int i = 0; i < room.getNumOfRows(); i++) {
             for (int j = 0; j < room.getNumOfColumns(); j++) {
-                if (room.getStatus(i, j) == Status.HEALTHY) {
+                Status status = room.getStatus(i, j);
+                if (status == Status.HEALTHY) {
                     return -1;
+                }
+                if (status == Status.INFECTED) {
+                    maxTicks = Math.max(maxTicks, infectedTick[i][j]);
                 }
             }
         }
 
-        return this.totalTicks;
+        return maxTicks;
     }
 
     public void runSimulation() {
@@ -60,7 +64,6 @@ public class ParasiteB {
                 int newC = c + dir[1];
                 if (!isWall(newR, newC) && infectedTick[newR][newC] == null && this.room.infectPosition(newR, newC)) {
                     infectedTick[newR][newC] = infectedTick[r][c] + 1;
-                    totalTicks = Math.max(totalTicks, infectedTick[newR][newC]);
                     infected.add(new Grid(newR, newC));
                 }
             }
