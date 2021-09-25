@@ -122,7 +122,8 @@ public class Main {
   @RequestMapping(value = "/fixedrace", method = RequestMethod.POST)
   @ResponseBody
   public String fixedRace(@RequestBody String fixedRace) {
-    return "foobar";
+    System.out.println(fixedRace);
+    return "Bernadine Brackin, foo, foo, foo, foo, foo, foo, foo, foo, foo";
   }
 
   @Bean
