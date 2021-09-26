@@ -72,7 +72,7 @@ We will do a POST request on your team URL with the endpoint /stock-hunter to ev
 
 ### Grid generation
 
-![Grid Explanation](/assets/images/stock-hunter.png)
+![Grid Explanation](/CodeItSuisse-2021/assets/images/stock-hunter.png)
 
 Following is the explanation for the grid map values for some of the grid points
 
