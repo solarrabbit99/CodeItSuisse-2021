@@ -1,0 +1,17 @@
+---
+layout: post
+title: "Results"
+date: 2021-09-26 21:36:10 +0800
+categories: jekyll update
+---
+
+Challenge Results:
+
+- [HK Team](https://cis2021-hk-team-backend.herokuapp.com/leaderboard/index.html)
+- [SG Team](https://cis2021-sg-team-backend.herokuapp.com/leaderboard/index.html)
+- [HK Individual](https://cis2021-hk-individual-backend.herokuapp.com/leaderboard/index.html)
+- [SG Individual](https://cis2021-sg-individual-backend.herokuapp.com/leaderboard/index.html)
+
+## HK Team
+
+![HK Team](/assets/images/cis2021-hk-team.png)
