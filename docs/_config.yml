@@ -21,14 +21,17 @@
 title: CodeIT Suisse Contest 2021 Mirror
 email: hanhan_1999@hotmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Note: I, similarly for the email shown, am not the owner of these questions,
-  or part of the challenge organising committee. I am just a participant of the
-  competition. If you like the post be sure to give a star on the main
-  repository.
+  Challenge problems and results
 baseurl: "/CodeItSuisse-2021" # the subpath of your site, e.g. /blog
 url: "https://zhenghanlee.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username:
 github_username: zhenghanlee
+
+collections:
+  problems:
+    output: true
+  results:
+    output: true
 
 # Build settings
 theme: minima

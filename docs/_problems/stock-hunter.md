@@ -1,8 +1,6 @@
 ---
 layout: post
 title: "Stock Hunter"
-date: 2021-09-26 20:13:10 +0800
-categories: jekyll update
 ---
 
 World has been hit by a pandemic, it is the recession time and market is quite bearish.

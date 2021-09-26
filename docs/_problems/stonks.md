@@ -1,8 +1,6 @@
 ---
 layout: post
 title: "Time Travelling Stonks Man"
-date: 2021-09-26 21:36:10 +0800
-categories: jekyll update
 ---
 
 ![Stonks](https://preview.redd.it/z0pr145e3h751.jpg?width=860&format=pjpg&auto=webp&s=f6fe763e970c9e4a36d9b2e8811f042a1edb1dc1)
