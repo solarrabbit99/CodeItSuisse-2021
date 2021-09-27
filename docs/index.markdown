@@ -16,6 +16,8 @@ star on the main repository [here](https://github.com/zhenghanlee/CodeItSuisse-2
 
 ## [Fixed Race](/CodeItSuisse-2021/problems/fixed-race.html)
 
+## [Options Optimisation](/CodeItSuisse-2021/problems/optopt.html)
+
 ## [Parasite](/CodeItSuisse-2021/problems/parasite.html)
 
 ## [Stock Hunter](/CodeItSuisse-2021/problems/stock-hunter.html)
