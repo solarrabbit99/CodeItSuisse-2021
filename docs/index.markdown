@@ -14,6 +14,10 @@ star on the main repository [here](https://github.com/zhenghanlee/CodeItSuisse-2
 
 ## [Stock Hunter](/CodeItSuisse-2021/problems/stock-hunter.html)
 
+## [Swiss Stig (Part 1)](/CodeItSuisse-2021/problems/swiss-perry.html)
+
+## [Swiss Stig (Part 2)](/CodeItSuisse-2021/problems/swiss-ben.html)
+
 ## [Time Travelling Stonks Man](/CodeItSuisse-2021/problems/stonks.html)
 
 # Results
