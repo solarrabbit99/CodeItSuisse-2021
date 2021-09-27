@@ -2,11 +2,15 @@
 layout: home
 ---
 
-I am not the owner of these questions, nor part of the challenge organising committee.
+I am not the owner of these questions, nor am I part of the challenge organising committee.
 I am just a participant of the competition. If you like this site be sure to give a
 star on the main repository [here](https://github.com/zhenghanlee/CodeItSuisse-2021).
 
 # Problems
+
+## [Arena: Quoridor](/CodeItSuisse-2021/problems/arena.html)
+
+## [Arena: Tic-Tac-Toe](/CodeItSuisse-2021/problems/arena.html)
 
 ## [Fixed Race](/CodeItSuisse-2021/problems/fixed-race.html)
 
