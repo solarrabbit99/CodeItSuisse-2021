@@ -12,6 +12,8 @@ star on the main repository [here](https://github.com/zhenghanlee/CodeItSuisse-2
 
 ## [Arena: Tic-Tac-Toe](/CodeItSuisse-2021/problems/arena.html)
 
+## [Crack the Cipher](/CodeItSuisse-2021/problems/cipher-cracking.html)
+
 ## [Fixed Race](/CodeItSuisse-2021/problems/fixed-race.html)
 
 ## [Parasite](/CodeItSuisse-2021/problems/parasite.html)
